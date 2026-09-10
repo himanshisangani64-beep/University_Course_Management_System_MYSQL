@@ -62,7 +62,7 @@ Query OK, 0 rows affected
 
 -- Create Enrollments Table
 create Table Enrollments (
-    EnrollmentID int Primary key auto_increment,
+    EnrollmentID int Primary key,
     StudentID int,
     CourseID int,
     EnrollmentDate date,
@@ -92,9 +92,18 @@ Query OK, 4 rows affected
 Records: 4  Duplicates: 0  Warnings: 0
 
 
-
-
-
+-- read Data
+Select * from Departments;
+-- OutPut
++--------------+------------------+
+| DepartmentID | DepartmentName   |
++--------------+------------------+
+|            1 | Computer Science |
+|            2 | Mathematics      |
+|            3 | Commerce         |
+|            4 | Diploma          |
++--------------+------------------+
+4 rows in set (0.00 sec)
 
 
 -- Insert Data into Courses Table
@@ -108,7 +117,7 @@ Query OK, 2 rows affected
 Records: 2  Duplicates: 0  Warnings: 0
 
 Insert into Courses (CourseName,DepartmentID,Credits)
-values('Civil Enginnering',4,5),
+values('Civil Engineering',4,5),
 ('Machine Learning',1,5),
 ('Accounting',3,3),
 ('Calculus',2,1),
@@ -117,26 +126,39 @@ values('Civil Enginnering',4,5),
 ('Artificial Intelligence',1,5),
 ('Diploma In IT',4,4),
 ('Linear Algebra',2,4),
-('Web Devlopment',1,2),
+('Web Development',1,2),
 ('Economics',3,1),
 ('Finance',3,2),
-('Probalility',2,3),
+('Probability',2,3),
 ('Business Management',3,4),
 ('Statistics',2,4),
 ('Discrete Mathematics',2,2),
 ('Cyber Security',1,5),
-('Software Enginnering',1,3),
+('Software Engineering',1,3),
 ('Computer Engineering',4,3),
 ('Operating System',1,2),
 ('Geometry',2,3),
 ('Data Science',1,5),
-('Mobile Application Devlopment',1,4);
+('Mobile Application Development',1,4);
 
 -- OutPut
 Query OK, 23 rows affected 
 Records: 23  Duplicates: 0  Warnings 0:
 
 
+-- Read Data
+Select * from Courses limit 5;
+--OutPut
++----------+---------------------+--------------+---------+
+| CourseID | CourseName          | DepartmentID | Credits |
++----------+---------------------+--------------+---------+
+|      101 | Introduction to SQL |            1 |       3 |
+|      102 | Data Structures     |            2 |       4 |
+|      103 | Civil Enginnering   |            4 |       5 |
+|      104 | Machine Learning    |            1 |       5 |
+|      105 | Accounting          |            3 |       3 |
++----------+---------------------+--------------+---------+
+5 rows in set (0.00 sec)
 
 
 
@@ -168,6 +190,23 @@ values('Alice','Johnson','alice.johnson@univ.com',1),
 -- OutPut
 Query OK, 20 rows affected 
 Records: 20  Duplicates: 0  Warnings: 0 
+
+
+-- Read Data
+Select * from Instructors limit 5;
+-- OutPut
++--------------+-----------+----------+------------------------+--------------+
+| InstructorID | FirstName | LastName | Email                  | DepartmentID |
++--------------+-----------+----------+------------------------+--------------+
+|            1 | Alice     | Johnson  | alice.johnson@univ.com |            1 |
+|            2 | Bob       | Lee      | bob.lee@univ.com       |            2 |
+|            3 | Arjun     | Patel    | arjun.patel@univ.com   |            3 |
+|            4 | Meera     | Shah     | meera.shah@univ.com    |            4 |
+|            5 | Vivek     | Joshi    | vivek.joshi@univ.com   |            3 |
++--------------+-----------+----------+------------------------+--------------+
+5 rows in set (0.00 sec)
+
+
 
 
 
@@ -205,50 +244,88 @@ Records: 20  Duplicates: 0  Warnings: 0
 
 
 
+-- Read Data
+Select * from Students limit 5;
+-- OutPut
++-----------+-----------+----------+-----------------------+------------+----------------+
+| StudentID | FirstName | LastName | Email                 | BirthDate  | EnrollmentDate |
++-----------+-----------+----------+-----------------------+------------+----------------+
+|         1 | John      | Doe      | john.doe@email.com    | 2000-01-15 | 2022-08-01     |
+|         2 | Jane      | Smith    | jane.smith@email.com  | 1999-05-25 | 2021-08-01     |
+|         3 | Arjun     | Patel    | arjun.patel@email.com | 2001-03-12 | 2021-07-15     |
+|         4 | Meera     | Shah     | meera.shah@email.com  | 2000-09-20 | 2021-08-10     |
+|         5 | Vivek     | Joshi    | vivek.joshi@email.com | 1999-11-05 | 2021-09-01     |
++-----------+-----------+----------+-----------------------+------------+----------------+
+5 rows in set (0.00 sec)
+
+
+
+
+
 
 
 -- Insert Data into Enrollments Table
 
-Insert into Enrollments(StudentID,CourseID,EnrollmentDate)
-values(1,101,'2022-08-01'),
-(2,102,'2021-08-01'),
-(3,101,'2021-07-15'),
-(3,104,'2021-07-15'),
-(8,101,'2022-08-12'),
-(6,101,'2021-08-20'),
-(13,104,'2024-07-10'),
-(2,101,'2021-08-01'),
-(20,105,'2026-08-15'),
-(4,104,'2021-08-10'),
-(14,102,'2024-08-05'),
-(5,104,'2021-09-01'),
-(6,104,'2021-08-20'),
-(14,101,'2024-08-05'),
-(11,101,'2023-08-01'),
-(20,102,'2026-08-15'),
-(19,110,'2026-08-01'),
-(7,104,'2022-07-05'),
-(8,104,'2022-08-12'),
-(15,114,'2024-08-20'),
-(9,104,'2022-09-01'),
-(20,110,'2026-08-15'),
-(10,104,'2022-07-20'),
-(5,111,'2021-09-01'),
-(11,104,'2023-08-01'),
-(3,102,'2021-07-15'),
-(16,103,'2025-07-15'),
-(8,102,'2022-08-12'),
-(18,125,'2026-07-10'),
-(12,104,'2023-08-15'),
-(16,114,'2025-07-15'),
-(17,125,'2025-08-01'),
-(14,109,'2024-08-05'),
-(19,101,'2026-08-01'),
-(19,102,'2026-08-01');
+Insert into Enrollments(EnrollmentID,StudentID,CourseID,EnrollmentDate)
+values(1,1,101,'2022-08-01'),
+(2,2,102,'2021-08-01'),
+(3,3,101,'2021-07-15'),
+(4,3,104,'2021-07-15'),
+(5,8,101,'2022-08-12'),
+(6,6,101,'2021-08-20'),
+(7,13,104,'2024-07-10'),
+(8,2,101,'2021-08-01'),
+(9,20,105,'2026-08-15'),
+(10,4,104,'2021-08-10'),
+(11,14,102,'2024-08-05'),
+(12,5,104,'2021-09-01'),
+(13,6,104,'2021-08-20'),
+(14,14,101,'2024-08-05'),
+(15,11,101,'2023-08-01'),
+(16,20,102,'2026-08-15'),
+(17,19,110,'2026-08-01'),
+(18,7,104,'2022-07-05'),
+(19,8,104,'2022-08-12'),
+(20,15,114,'2024-08-20'),
+(21,9,104,'2022-09-01'),
+(22,20,110,'2026-08-15'),
+(23,10,104,'2022-07-20'),
+(24,5,111,'2021-09-01'),
+(25,11,104,'2023-08-01'),
+(26,3,102,'2021-07-15'),
+(27,16,103,'2025-07-15'),
+(28,8,102,'2022-08-12'),
+(29,18,125,'2026-07-10'),
+(30,12,104,'2023-08-15'),
+(31,16,114,'2025-07-15'),
+(32,17,125,'2025-08-01'),
+(33,14,109,'2024-08-05'),
+(34,19,101,'2026-08-01'),
+(35,19,102,'2026-08-01');
 
 -- OutPut
 Query OK, 35 rows affected 
 Records: 35  Duplicates: 0  Warnings: 0 
+
+
+
+-- Read Data 
+Select * from Enrollments limit 5;
+-- OutPut
++--------------+-----------+----------+----------------+
+| EnrollmentID | StudentID | CourseID | EnrollmentDate |
++--------------+-----------+----------+----------------+
+|            1 |         1 |      101 | 2022-08-01     |
+|            2 |         2 |      102 | 2021-08-01     |
+|            3 |         3 |      101 | 2021-07-15     |
+|            4 |         3 |      104 | 2021-07-15     |
+|            5 |         8 |      101 | 2022-08-12     |
++--------------+-----------+----------+----------------+
+5 rows in set (0.00 sec)
+
+
+
+
 
 
 -- 2) Retrieve Student who enrolled after 2022
@@ -290,7 +367,7 @@ where  d.DepartmentName = "Mathematics" limit 5;
 |      102 | Mathematics    | Data Structures |
 |      106 | Mathematics    | Calculus        |
 |      111 | Mathematics    | Linear Algebra  |
-|      115 | Mathematics    | Probalility     |
+|      115 | Mathematics    | Probability     |
 |      117 | Mathematics    | Statistics      |
 +----------+----------------+-----------------+
 5 rows in set (0.00 sec)
@@ -439,45 +516,45 @@ order by e1.StudentID;
 
 -- OutPut
 
-+-----------+----------+-------------------------------+--------------+---------+
-| StudentID | CourseID | CourseName                    | DepartmentID | credits |
-+-----------+----------+-------------------------------+--------------+---------+
-|         1 |      101 | Introduction to SQL           |            1 |       3 |
-|         2 |      102 | Data Structures               |            2 |       4 |
-|         2 |      101 | Introduction to SQL           |            1 |       3 |
-|         3 |      101 | Introduction to SQL           |            1 |       3 |
-|         3 |      104 | Machine Learning              |            1 |       5 |
-|         3 |      102 | Data Structures               |            2 |       4 |
-|         4 |      104 | Machine Learning              |            1 |       5 |
-|         5 |      104 | Machine Learning              |            1 |       5 |
-|         5 |      111 | Linear Algebra                |            2 |       4 |
-|         6 |      101 | Introduction to SQL           |            1 |       3 |
-|         6 |      104 | Machine Learning              |            1 |       5 |
-|         7 |      104 | Machine Learning              |            1 |       5 |
-|         8 |      101 | Introduction to SQL           |            1 |       3 |
-|         8 |      104 | Machine Learning              |            1 |       5 |
-|         8 |      102 | Data Structures               |            2 |       4 |
-|         9 |      104 | Machine Learning              |            1 |       5 |
-|        10 |      104 | Machine Learning              |            1 |       5 |
-|        11 |      101 | Introduction to SQL           |            1 |       3 |
-|        11 |      104 | Machine Learning              |            1 |       5 |
-|        12 |      104 | Machine Learning              |            1 |       5 |
-|        13 |      104 | Machine Learning              |            1 |       5 |
-|        14 |      102 | Data Structures               |            2 |       4 |
-|        14 |      101 | Introduction to SQL           |            1 |       3 |
-|        14 |      109 | Artificial Intelligence       |            1 |       5 |
-|        15 |      114 | Finance                       |            3 |       2 |
-|        16 |      103 | Civil Enginnering             |            4 |       5 |
-|        16 |      114 | Finance                       |            3 |       2 |
-|        17 |      125 | Mobile Application Devlopment |            1 |       4 |
-|        18 |      125 | Mobile Application Devlopment |            1 |       4 |
-|        19 |      110 | Diploma In IT                 |            4 |       4 |
-|        19 |      101 | Introduction to SQL           |            1 |       3 |
-|        19 |      102 | Data Structures               |            2 |       4 |
-|        20 |      105 | Accounting                    |            3 |       3 |
-|        20 |      110 | Diploma In IT                 |            4 |       4 |
-|        20 |      102 | Data Structures               |            2 |       4 |
-+-----------+----------+-------------------------------+--------------+---------+
++-----------+----------+--------------------------------+--------------+---------+
+| StudentID | CourseID | CourseName                     | DepartmentID | credits |
++-----------+----------+--------------------------------+--------------+---------+
+|         1 |      101 | Introduction to SQL            |            1 |       3 |
+|         2 |      101 | Introduction to SQL            |            1 |       3 |
+|         2 |      102 | Data Structures                |            2 |       4 |
+|         3 |      101 | Introduction to SQL            |            1 |       3 |
+|         3 |      102 | Data Structures                |            2 |       4 |
+|         3 |      104 | Machine Learning               |            1 |       5 |
+|         4 |      104 | Machine Learning               |            1 |       5 |
+|         5 |      104 | Machine Learning               |            1 |       5 |
+|         5 |      111 | Linear Algebra                 |            2 |       4 |
+|         6 |      101 | Introduction to SQL            |            1 |       3 |
+|         6 |      104 | Machine Learning               |            1 |       5 |
+|         7 |      104 | Machine Learning               |            1 |       5 |
+|         8 |      101 | Introduction to SQL            |            1 |       3 |
+|         8 |      102 | Data Structures                |            2 |       4 |
+|         8 |      104 | Machine Learning               |            1 |       5 |
+|         9 |      104 | Machine Learning               |            1 |       5 |
+|        10 |      104 | Machine Learning               |            1 |       5 |
+|        11 |      101 | Introduction to SQL            |            1 |       3 |
+|        11 |      104 | Machine Learning               |            1 |       5 |
+|        12 |      104 | Machine Learning               |            1 |       5 |
+|        13 |      104 | Machine Learning               |            1 |       5 |
+|        14 |      101 | Introduction to SQL            |            1 |       3 |
+|        14 |      102 | Data Structures                |            2 |       4 |
+|        14 |      109 | Artificial Intelligence        |            1 |       5 |
+|        15 |      114 | Finance                        |            3 |       2 |
+|        16 |      103 | Civil Engineering              |            4 |       5 |
+|        16 |      114 | Finance                        |            3 |       2 |
+|        17 |      125 | Mobile Application Development |            1 |       4 |
+|        18 |      125 | Mobile Application Development |            1 |       4 |
+|        19 |      101 | Introduction to SQL            |            1 |       3 |
+|        19 |      102 | Data Structures                |            2 |       4 |
+|        19 |      110 | Diploma In IT                  |            4 |       4 |
+|        20 |      102 | Data Structures                |            2 |       4 |
+|        20 |      105 | Accounting                     |            3 |       3 |
+|        20 |      110 | Diploma In IT                  |            4 |       4 |
++-----------+----------+--------------------------------+--------------+---------+
 35 rows in set (0.00 sec)
 
 
@@ -496,45 +573,45 @@ order by s1.StudentID ;
 
 -- OutPut
 
-+-----------+-----------+----------+-------------------------+-------------------------------+
-| StudentID | FirstName | LastName | Email                   | CourseName                    |
-+-----------+-----------+----------+-------------------------+-------------------------------+
-|         1 | John      | Doe      | john.doe@email.com      | Introduction to SQL           |
-|         2 | Jane      | Smith    | jane.smith@email.com    | Data Structures               |
-|         2 | Jane      | Smith    | jane.smith@email.com    | Introduction to SQL           |
-|         3 | Arjun     | Patel    | arjun.patel@email.com   | Introduction to SQL           |
-|         3 | Arjun     | Patel    | arjun.patel@email.com   | Machine Learning              |
-|         3 | Arjun     | Patel    | arjun.patel@email.com   | Data Structures               |
-|         4 | Meera     | Shah     | meera.shah@email.com    | Machine Learning              |
-|         5 | Vivek     | Joshi    | vivek.joshi@email.com   | Machine Learning              |
-|         5 | Vivek     | Joshi    | vivek.joshi@email.com   | Linear Algebra                |
-|         6 | Anjali    | Desai    | anjali.desai@email.com  | Introduction to SQL           |
-|         6 | Anjali    | Desai    | anjali.desai@email.com  | Machine Learning              |
-|         7 | Rohan     | Mehta    | rohan.mehta@email.com   | Machine Learning              |
-|         8 | Kavya     | Trivedi  | kavya.trivedi@email.com | Introduction to SQL           |
-|         8 | Kavya     | Trivedi  | kavya.trivedi@email.com | Machine Learning              |
-|         8 | Kavya     | Trivedi  | kavya.trivedi@email.com | Data Structures               |
-|         9 | Yash      | Sharma   | yash.sharma@email.com   | Machine Learning              |
-|        10 | Pooja     | Patel    | pooja.patel@email.com   | Machine Learning              |
-|        11 | Dhruv     | Desai    | dhruv.desai@email.com   | Introduction to SQL           |
-|        11 | Dhruv     | Desai    | dhruv.desai@email.com   | Machine Learning              |
-|        12 | Nisha     | Mehta    | nisha.mehta@email.com   | Machine Learning              |
-|        13 | Jay       | Joshi    | jay.joshi@email.com     | Machine Learning              |
-|        14 | Sneha     | Shah     | sneha.shah@email.com    | Data Structures               |
-|        14 | Sneha     | Shah     | sneha.shah@email.com    | Introduction to SQL           |
-|        14 | Sneha     | Shah     | sneha.shah@email.com    | Artificial Intelligence       |
-|        15 | Harsh     | Patel    | harsh.patel@email.com   | Finance                       |
-|        16 | Isha      | Trivedi  | isha.trivedi@email.com  | Civil Enginnering             |
-|        16 | Isha      | Trivedi  | isha.trivedi@email.com  | Finance                       |
-|        17 | Dev       | Sharma   | dev.sharma@email.com    | Mobile Application Devlopment |
-|        18 | Mansi     | Desai    | mansi.desai@email.com   | Mobile Application Devlopment |
-|        19 | Akash     | Mehta    | akash.mehta@email.com   | Diploma In IT                 |
-|        19 | Akash     | Mehta    | akash.mehta@email.com   | Introduction to SQL           |
-|        19 | Akash     | Mehta    | akash.mehta@email.com   | Data Structures               |
-|        20 | Tanya     | Patel    | tanya.patel@email.com   | Accounting                    |
-|        20 | Tanya     | Patel    | tanya.patel@email.com   | Data Structures               |
-|        20 | Tanya     | Patel    | tanya.patel@email.com   | Diploma In IT                 |
-+-----------+-----------+----------+-------------------------+-------------------------------+
++-----------+-----------+----------+-------------------------+--------------------------------+
+| StudentID | FirstName | LastName | Email                   | CourseName                     |
++-----------+-----------+----------+-------------------------+--------------------------------+
+|         1 | John      | Doe      | john.doe@email.com      | Introduction to SQL            |
+|         2 | Jane      | Smith    | jane.smith@email.com    | Data Structures                |
+|         2 | Jane      | Smith    | jane.smith@email.com    | Introduction to SQL            |
+|         3 | Arjun     | Patel    | arjun.patel@email.com   | Introduction to SQL            |
+|         3 | Arjun     | Patel    | arjun.patel@email.com   | Machine Learning               |
+|         3 | Arjun     | Patel    | arjun.patel@email.com   | Data Structures                |
+|         4 | Meera     | Shah     | meera.shah@email.com    | Machine Learning               |
+|         5 | Vivek     | Joshi    | vivek.joshi@email.com   | Machine Learning               |
+|         5 | Vivek     | Joshi    | vivek.joshi@email.com   | Linear Algebra                 |
+|         6 | Anjali    | Desai    | anjali.desai@email.com  | Introduction to SQL            |
+|         6 | Anjali    | Desai    | anjali.desai@email.com  | Machine Learning               |
+|         7 | Rohan     | Mehta    | rohan.mehta@email.com   | Machine Learning               |
+|         8 | Kavya     | Trivedi  | kavya.trivedi@email.com | Introduction to SQL            |
+|         8 | Kavya     | Trivedi  | kavya.trivedi@email.com | Machine Learning               |
+|         8 | Kavya     | Trivedi  | kavya.trivedi@email.com | Data Structures                |
+|         9 | Yash      | Sharma   | yash.sharma@email.com   | Machine Learning               |
+|        10 | Pooja     | Patel    | pooja.patel@email.com   | Machine Learning               |
+|        11 | Dhruv     | Desai    | dhruv.desai@email.com   | Introduction to SQL            |
+|        11 | Dhruv     | Desai    | dhruv.desai@email.com   | Machine Learning               |
+|        12 | Nisha     | Mehta    | nisha.mehta@email.com   | Machine Learning               |
+|        13 | Jay       | Joshi    | jay.joshi@email.com     | Machine Learning               |
+|        14 | Sneha     | Shah     | sneha.shah@email.com    | Data Structures                |
+|        14 | Sneha     | Shah     | sneha.shah@email.com    | Introduction to SQL            |
+|        14 | Sneha     | Shah     | sneha.shah@email.com    | Artificial Intelligence        |
+|        15 | Harsh     | Patel    | harsh.patel@email.com   | Finance                        |
+|        16 | Isha      | Trivedi  | isha.trivedi@email.com  | Civil Engineering              |
+|        16 | Isha      | Trivedi  | isha.trivedi@email.com  | Finance                        |
+|        17 | Dev       | Sharma   | dev.sharma@email.com    | Mobile Application Development |
+|        18 | Mansi     | Desai    | mansi.desai@email.com   | Mobile Application Development |
+|        19 | Akash     | Mehta    | akash.mehta@email.com   | Diploma In IT                  |
+|        19 | Akash     | Mehta    | akash.mehta@email.com   | Introduction to SQL            |
+|        19 | Akash     | Mehta    | akash.mehta@email.com   | Data Structures                |
+|        20 | Tanya     | Patel    | tanya.patel@email.com   | Accounting                     |
+|        20 | Tanya     | Patel    | tanya.patel@email.com   | Data Structures                |
+|        20 | Tanya     | Patel    | tanya.patel@email.com   | Diploma In IT                  |
++-----------+-----------+----------+-------------------------+--------------------------------+
 35 rows in set (0.00 sec)
 
 
