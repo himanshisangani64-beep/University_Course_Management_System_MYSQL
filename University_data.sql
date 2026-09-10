@@ -76,9 +76,6 @@ Query OK, 0 rows affected
 
 -- 1) Perform CRUD Operations on all tables
 
-
-
-
 -- Insert Data into Departments Table
 
 Insert into Departments (DepartmentName) values
@@ -143,8 +140,7 @@ values('Civil Engineering',4,5),
 
 -- OutPut
 Query OK, 23 rows affected 
-Records: 23  Duplicates: 0  Warnings 0:
-
+Records: 23  Duplicates: 0  Warnings 0
 
 -- Read Data
 Select * from Courses limit 5;
@@ -159,8 +155,6 @@ Select * from Courses limit 5;
 |      105 | Accounting          |            3 |       3 |
 +----------+---------------------+--------------+---------+
 5 rows in set (0.00 sec)
-
-
 
 
 -- Insert Data into Instructors Table
@@ -191,7 +185,6 @@ values('Alice','Johnson','alice.johnson@univ.com',1),
 Query OK, 20 rows affected 
 Records: 20  Duplicates: 0  Warnings: 0 
 
-
 -- Read Data
 Select * from Instructors limit 5;
 -- OutPut
@@ -205,11 +198,6 @@ Select * from Instructors limit 5;
 |            5 | Vivek     | Joshi    | vivek.joshi@univ.com   |            3 |
 +--------------+-----------+----------+------------------------+--------------+
 5 rows in set (0.00 sec)
-
-
-
-
-
 
 
 -- Insert Data into Students Table
@@ -242,8 +230,6 @@ values
 Query OK, 20 rows affected 
 Records: 20  Duplicates: 0  Warnings: 0
 
-
-
 -- Read Data
 Select * from Students limit 5;
 -- OutPut
@@ -257,11 +243,6 @@ Select * from Students limit 5;
 |         5 | Vivek     | Joshi    | vivek.joshi@email.com | 1999-11-05 | 2021-09-01     |
 +-----------+-----------+----------+-----------------------+------------+----------------+
 5 rows in set (0.00 sec)
-
-
-
-
-
 
 
 -- Insert Data into Enrollments Table
@@ -307,8 +288,6 @@ values(1,1,101,'2022-08-01'),
 Query OK, 35 rows affected 
 Records: 35  Duplicates: 0  Warnings: 0 
 
-
-
 -- Read Data 
 Select * from Enrollments limit 5;
 -- OutPut
@@ -327,11 +306,8 @@ Select * from Enrollments limit 5;
 
 
 
-
 -- 2) Retrieve Student who enrolled after 2022
-
 Select * from Students where year(EnrollmentDate) > 2022;
-
 -- OutPut
 +-----------+-----------+----------+------------------------+------------+----------------+
 | StudentID | FirstName | LastName | Email                  | BirthDate  | EnrollmentDate |
@@ -351,15 +327,14 @@ Select * from Students where year(EnrollmentDate) > 2022;
 
 
 
--- 3) Retrieve courses offered by the Mathematics department with a limit of 5 course
 
+-- 3) Retrieve courses offered by the Mathematics department with a limit of 5 course
 Select c.CourseID,
        d.DepartmentName,
        c.CourseName 
 from Courses  c inner join Departments d 
 on c.DepartmentID = d.DepartmentID 
 where  d.DepartmentName = "Mathematics" limit 5;
-
 -- OutPut
 +----------+----------------+-----------------+
 | CourseID | DepartmentName | CourseName      |
@@ -375,13 +350,11 @@ where  d.DepartmentName = "Mathematics" limit 5;
 
 
 -- 4) Get the nmmber of students enrolled in each course , filtering for courses with more than 5 students
-
 Select  c1.CourseName , count(distinct(e1.StudentID)) as Number_Of_Student
 from Enrollments e1 inner join Courses c1 on 
 e1.CourseID = c1.CourseID
 group by c1.CourseName 
 having  Number_Of_Student > 5;
-
 -- OutPut
 +---------------------+-------------------+
 | CourseName          | Number_Of_Student |
@@ -395,9 +368,7 @@ having  Number_Of_Student > 5;
 
 
 
-
 -- 5) Find students who are enrolled in both introduction to SQL and Data Structures
-
 Select s1.StudentID,
        s1.FirstName 
 from Enrollments e1 inner join Students s1 
@@ -405,8 +376,6 @@ on e1.StudentID = s1.StudentID
 where CourseID in (101,102)
 group by s1.StudentID , s1.FirstName
 having count(distinct(CourseID)) = 2;
-
-
 -- OutPut
 +-----------+-----------+
 | StudentID | FirstName |
@@ -429,7 +398,6 @@ on e1.StudentID = s1.StudentID
  where CourseID  = 101 or CourseID = 102
 group by s1.StudentID ,  s1.FirstName
 order by s1.StudentID;
-
 -- OutPut
 +-----------+-----------+
 | StudentID | FirstName |
@@ -447,11 +415,9 @@ order by s1.StudentID;
 9 rows in set (0.00 sec)
 
 
-
 -- 7) Calculate the average number of credits for all courses
 Select  avg(Credits) as average_Credits_overAll
 from Courses;
-
 -- OutPut
 +-------------------------+
 | average_Credits_overAll |
@@ -462,15 +428,11 @@ from Courses;
 
 
 
-
 -- 8) Count of instructors in the computer science departmenrs 
-
 Select d1.DepartmentName , count(*) as Number_Of_instructors 
 from Instructors i1 inner join Departments d1 on 
 i1.DepartmentID = d1.DepartmentID 
 where d1.DepartmentName = 'Computer Science';
-
-
 -- output
 +------------------+-----------------------+
 | DepartmentName   | Number_Of_instructors |
@@ -482,14 +444,11 @@ where d1.DepartmentName = 'Computer Science';
 
 
 -- 9) Count the number of student enrolled in each department
-
 Select  d1.DepartmentName , Count(distinct(e1.StudentID)) as Number_Of_Student 
 from Enrollments e1  inner join  Courses c1 on 
 e1.CourseID = c1.CourseID inner join Departments d1 on 
 d1.DepartmentID = c1.DepartmentID
 group by d1.DepartmentName;
-
-
 -- output
 +------------------+-------------------+
 | DepartmentName   | Number_Of_Student |
@@ -503,8 +462,8 @@ group by d1.DepartmentName;
 
 
 
--- 10) INNER JOIN : Retriveve students and their corresponding courses 
 
+-- 10) INNER JOIN : Retriveve students and their corresponding courses 
 Select e1.StudentID , 
        c1.CourseID,
        c1.CourseName,
@@ -512,10 +471,7 @@ Select e1.StudentID ,
        c1.credits from Enrollments e1 inner join  Courses c1 on 
 e1.CourseID = c1.CourseID
 order by e1.StudentID;
-
-
 -- OutPut
-
 +-----------+----------+--------------------------------+--------------+---------+
 | StudentID | CourseID | CourseName                     | DepartmentID | credits |
 +-----------+----------+--------------------------------+--------------+---------+
@@ -559,8 +515,8 @@ order by e1.StudentID;
 
 
 
--- 11) LEFT JOIN : Retrieve all student and their corroesponding courses , if any
 
+-- 11) LEFT JOIN : Retrieve all student and their corroesponding courses , if any
 Select s1.StudentID,
        s1.FirstName,
        s1.LastName,
@@ -569,10 +525,7 @@ Select s1.StudentID,
        on s1.StudentID =  e1.StudentID left join Courses c1
 on e1.CourseID = c1.CourseID
 order by s1.StudentID ;
-
-
 -- OutPut
-
 +-----------+-----------+----------+-------------------------+--------------------------------+
 | StudentID | FirstName | LastName | Email                   | CourseName                     |
 +-----------+-----------+----------+-------------------------+--------------------------------+
@@ -616,10 +569,8 @@ order by s1.StudentID ;
 
 
 
+
 --12) Subquery : Find student enrolled in courses that have more than 10 student
-
-
-
 Select s1.StudentID,
        s1.FirstName,
        s1.LastName,
@@ -632,10 +583,7 @@ e1.CourseID = c1.CourseID inner join (
     from Enrollments
     group by CourseID having Number_Of_Student > 10 ) std 
 on c1.CourseID = std.CourseID    
-order by s1.StudentID;
-   
-
-
+order by s1.StudentID; 
 -- output 
 +-----------+-----------+----------+----------+------------------+
 | StudentID | FirstName | LastName | CourseID | CourseName       |
@@ -655,11 +603,11 @@ order by s1.StudentID;
 11 rows in set (0.00 sec)
 
 
--- 13) Extract the year from the EnrollmentDate of Students
 
+
+-- 13) Extract the year from the EnrollmentDate of Students
 Select EnrollmentDate , year(EnrollmentDate) as year_of_Enrollment
 from Students;
-
 -- OutPut
 +----------------+--------------------+
 | EnrollmentDate | year_of_Enrollment |
@@ -688,10 +636,10 @@ from Students;
 20 rows in set (0.00 sec)
 
 
+
 -- 14) Concatenate the instructor's of first and last name
 Select FirstName , LastName , concat(FirstName,' ', LastName) as FullName 
 from instructors; 
-
 -- OutPut
 +-----------+----------+---------------+
 | FirstName | LastName | FullName      |
@@ -721,11 +669,7 @@ from instructors;
 
 
 
-
-
 -- 15) Calculate the running total of students enrolled in courses        
-
-
 Select * ,
        sum(Enrollments_Student) over(order by Enrollments_Student rows between unbounded preceding and current row) as running_Total
 from (
@@ -734,9 +678,7 @@ from (
         e1.CourseID = c1.CourseID
         group by c1.CourseName 
 ) EnrollmentsStudent_In_Course; 
-
 -- OutPut
-
 +-------------------------------+---------------------+---------------+
 | CourseName                    | Enrollments_Student | running_Total |
 +-------------------------------+---------------------+---------------+
@@ -755,13 +697,8 @@ from (
 
 
 
-
-
-
 -- 16) Label students as 'Senior' or 'Junior' based on their year of enrollment 
 -- (If the enrollment data is more than 4 year from the currendate , put the label 'senior' otherwise 'junior')
-
-
 Select StudentID ,
        FirstName,
        LastName,
@@ -772,10 +709,7 @@ Select StudentID ,
             else "junior"
        end as Student_Stutes
 from Students;
-
-
 -- OutPut
-
 +-----------+-----------+----------+-------------------------+----------------+----------------+
 | StudentID | FirstName | LastName | Email                   | EnrollmentDate | Student_Stutes |
 +-----------+-----------+----------+-------------------------+----------------+----------------+
