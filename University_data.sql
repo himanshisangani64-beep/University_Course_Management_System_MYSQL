@@ -253,7 +253,7 @@ Records: 35  Duplicates: 0  Warnings: 0
 
 -- 2) Retrieve Student who enrolled after 2022
 
-Select * from Students where year(EnrollmentDate) > '2022';
+Select * from Students where year(EnrollmentDate) > 2022;
 
 -- OutPut
 +-----------+-----------+----------+------------------------+------------+----------------+
